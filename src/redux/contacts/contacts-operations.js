@@ -19,26 +19,9 @@ export const fetchAllContacts = () => {
     return fn;
 }
 
-const isDuplicate = (contacts, {name, number}) => {
-    const normalizedName = name.toLowerCase();
-    const normalizedNumber = number.toLowerCase();
-    const duplicate = contacts.items.find(({ name, number }) => {
-      return (
-        name.toLowerCase() === normalizedName ||
-        number.toLowerCase() === normalizedNumber
-      );
-    });
-    return Boolean(duplicate);
-}
-
 export const fetchAddContact = (data) => {
-    const fn = async (dispatch, getState) => {
+    const fn = async (dispatch) => {
         try {
-            const { contacts } = getState();
-            if (isDuplicate(contacts.items, data)) {
-                alert(`${data.name} (${data.number}) is already in your contacts!`);
-                return false;
-            }
             dispatch(fetchAddContactLoading());
             const result = await api.addContact(data);
             dispatch(fetchAddContactSuccess(result));
