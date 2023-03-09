@@ -16,7 +16,6 @@ import styles from './common.module.scss';
 const App = () => {
   const filteredContacts = useSelector(getFilteredContacts);
   const filter = useSelector(getFilter);
-  // const contacts = useSelector(store => store.contacts.items);
   
   const dispatch = useDispatch();
 
@@ -26,12 +25,6 @@ const App = () => {
   
 
   const onAddContact = ({ name, number }) => {
-    // for (let i = 0; i < contacts.length; i++) {
-    //   if (contacts[i].name === name) {
-    //     return alert(`${name} is already in your contacts!`);
-    //   }
-    // }
-
     const action = fetchAddContact({ name, number });
     dispatch(action);
   }
